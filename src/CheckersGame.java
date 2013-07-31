@@ -93,12 +93,10 @@ public class CheckersGame {
 				JOptionPane.showMessageDialog(gameFrame, msg);	
 				gameover = false;	
 				gameFrame.setCheckerBoard(initCBS);
-				gameFrame.resetLabels();
 				resetPlayer(human.getChess());
 			}
 			else{
-				currentPlayer = ((currentPlayer == human) ? computer : human); //for testing
-				// System.out.println("finished a move.............." + state);
+				currentPlayer = ((currentPlayer == human) ? computer : human);
 			}
 			moveFinished.signalAll();
 		}
@@ -108,10 +106,6 @@ public class CheckersGame {
 	}
 	
 	public static boolean isMoving(){return gameFrame.isMoving();}
-	
-	public static void setText(int dep, int n, int maxP, int minP) {
-		gameFrame.setText(dep, n, maxP, minP);
-	}	
 		
 	/** game over when anyone wins the game or the players are even. */
 	private static boolean gameover = false;

@@ -125,8 +125,8 @@ class ComputerPlayer extends Player implements Runnable {
 		// System.out.println(curState);
 		Agent.SearchResult result = Agent.bestMove(curState, getChess());
 		CheckersGame.showMove(result.action);
-		// // System.out.println("finished a move..............Agent.maxDepth: " + Agent.maxDepth);
-		CheckersGame.setText(Agent.maxDepth, Agent.nodeGenerated, result.maxPruning, result.minPruning);
+		System.out.println(String.format("max depth: %d, generated nodes: %d, %d prunings take place in maxValue and %d in minValue", 
+					Agent.maxDepth, Agent.nodeGenerated, result.maxPruning, result.minPruning));
 	}
 		
 }

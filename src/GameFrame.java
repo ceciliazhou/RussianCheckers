@@ -15,17 +15,12 @@ public class GameFrame extends JFrame {
 		add(cfgPanel, BorderLayout.EAST);	
 		checkerboard = new Checkerboard(CB);
 		add(checkerboard, BorderLayout.CENTER);		
-		infoPanel = new GameInfoPanel();
-		add(infoPanel, BorderLayout.SOUTH);	
 	}	
 
 	public void setCheckerBoard(CBStatus CB) {
 		checkerboard.resetCheckers(CB);
 	}
 	
-	public void resetLabels() {
-		infoPanel.reset();
-	}
 
 	/** 
 	 * Return the player who gets the turn, either the human or the computer.
@@ -43,15 +38,11 @@ public class GameFrame extends JFrame {
 		checkerboard.showMove(path);
 	}	
 
-	public void setText(int dep, int n, int maxP, int minP) {
-		infoPanel.setText(dep, n, maxP, minP);
-	}	
 	
 	public boolean isMoving(){return checkerboard.isMoving();}
 	
 	private Checkerboard checkerboard;
 	private ConfigPanel cfgPanel;
-	private GameInfoPanel infoPanel; // to be done
 
 }
 
@@ -107,7 +98,7 @@ class ConfigPanel extends JPanel{
 					else Agent.setHardLevel(Agent.HardLevel.HARD);
 					
 					owner.setCheckerBoard(CheckersGame.initCBS);
-					owner.resetLabels();
+					// owner.resetLabels();
 					CheckersGame.moveFinished.signalAll();
 				}
 				finally {
@@ -115,41 +106,8 @@ class ConfigPanel extends JPanel{
 				}
 			}
 		});
-		add(start);
+		JPanel p = new JPanel();
+		p.add(start);
+		add(p);
 	}
-}
-
-/**
- * A Panel containing  
- * to be done
- * @param owner The GameFrame which contains this panel.
- */
-class GameInfoPanel extends JPanel{
-
-	public GameInfoPanel(){
-		setLayout(new GridLayout(2, 2));
-		add(depth);
-		add(maxPruning);
-		add(nodes);
-		add(minPruning);
-	}
-	
-	public void setText(int dep, int n, int maxP, int minP) {
-		depth.setText("MaxDepth/cutoff:                 "+dep);
-		nodes.setText("# of generated nodes:        "+n);
-		maxPruning.setText("# of pruning in MAX_VALUE:     "+maxP);
-		minPruning.setText("# of pruning in MIN_VALUE:     "+minP);
-	}
-	
-	public void reset(){
-		depth.setText("MaxDepth/cutoff:                 ");
-		nodes.setText("# of generated nodes:        ");
-		maxPruning.setText("# of pruning in MAX_VALUE:     ");
-		minPruning.setText("# of pruning in MIN_VALUE:     ");	
-	}
-	
-	private JLabel depth = new JLabel("MaxDepth/cutoff:                 ");
-	private JLabel nodes = new JLabel("# of generated nodes:        ");
-	private JLabel maxPruning = new JLabel("# of pruning in MAX_VALUE:     ");
-	private JLabel minPruning = new JLabel("# of pruning in MIN_VALUE:     ");
 }
