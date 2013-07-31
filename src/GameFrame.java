@@ -83,7 +83,7 @@ class ConfigPanel extends JPanel{
         add(new JLabel());
 
         /* construct a button used to start the game or rechoose the color of the chess for the human */
-        final JButton start = new JButton("New Game");
+        final JButton start = new JButton("Start");
         start.setPreferredSize(new Dimension(100, 30));
         start.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent event) {
